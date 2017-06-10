@@ -1,0 +1,25 @@
+#keyboard button {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 12.5%;
+	height: 2em;
+	line-height: 2em;
+	float: left;
+	display: block;
+	font: inherit;
+}
+
+#keyboard input {
+	position: fixed;
+	top: 50%;
+	left: -999px;
+}
+
+#keyboard.native-keyboard .more-lines {
+	display: none;
+}
+
+#keyboard.native-keyboard button[data-exec="keyboard"] {
+	color: white;
+	background-color: black;
+}

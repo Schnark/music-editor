@@ -1,0 +1,17 @@
+{
+	"@comment": "Note that the code to transform these data into a webpage is in https://github.com/Schnark/schnark.github.io",
+	"title": {
+		"en": "Music Editor – App for Firefox OS",
+		"de": "Music Editor – App für Firefox OS"
+	},
+	"serviceworker": true,
+	"icon": "res/icon-128.png",
+	"screenshots": [
+		"1.png",
+		"2.png"
+	],
+	"desc": {
+		"en": ["This app allows you to write down tunes, have them rendered and listen to them. It uses the ABC notation.", "From the integrated keyboard you can reach the most important elements, but you can also switch to your native keyboard.", "The tune is rendered using traditional musical notation, and you can listen to it.", "You can save and open ABC files, and also export to various formats (note that SVG and MIDI export are slightly broken on Firefox OS).", "A short reference on the ABC format is included."],
+		"de": ["Diese App ermöglicht es Melodien aufzuschreiben, sie darzustellen und anzuhören. Dabei wird das ABC-Format verwendet.", "Die integrierte Tastatur enthält die wichtigsten Elemente, aber du kannst auch zur normalen Tastatur wechseln.", "Die Melodie wird in herkömmlicher Notenschrift dargestellt und du kannst sie dir anhören.", "Du kannst ABC-Dateien speichern und öffnen, und in verschiedene Formate exportieren (beachte, dass SVG- und MIDI-Export auf Firefox OS etwas kaputt sind).", "Eine kurze Dokumentation zum ABC-Format ist ebenfalls enthalten."]
+	}
+}

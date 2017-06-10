@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<title>Music Editor</title>
+<link rel="stylesheet" href="res/app.css">
+<link rel="stylesheet" href="res/inputbox.css">
+<link rel="stylesheet" href="res/keyboard.css">
+<link rel="stylesheet" href="res/lib/font.css">
+<link rel="stylesheet" href="res/lib/abcjs-midi.css">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+<link rel="manifest" href="icons/manifest.json">
+<link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="icons/favicon.ico">
+<meta name="msapplication-config" content="icons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<script>
+if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installPackage)) {
+	navigator.serviceWorker.register('sw.js');
+}
+</script>
+<script src="res/lib/scroll.js"></script>
+<script src="res/file.js"></script>
+<script src="res/inputbox.js"></script>
+<script src="res/keyboard.js"></script>
+<script src="res/lib/abc.js"></script>
+</head><body>
+<div id="left">
+<section id="keyboard">
+<input>
+
+<button data-exec="keyboard">⌨</button>
+<button data-exec="del">⌫</button>
+<button data-exec="start">⇤</button>
+<button data-exec="left">←</button>
+<button data-exec="up">↑</button>
+<button data-exec="down">↓</button>
+<button data-exec="right">→</button>
+<button data-exec="end">⇥</button>
+<div class="more-lines">
+<button>(</button><button>)</button><button>[</button><button>]</button><button>z</button><button>^</button><button>_</button><button>=</button>
+
+<button>C</button><button>D</button><button>E</button><button>F</button><button>G</button><button>A</button><button>B</button><button>,</button>
+
+<button>c</button><button>d</button><button>e</button><button>f</button><button>g</button><button>a</button><button>b</button><button>'</button>
+
+<button>/</button><button>2</button><button>4</button><button>8</button><button>16</button><button>3</button><button>&lt;</button><button>&gt;</button>
+
+<button data-str=" ">␣</button><button data-str="&#10;">⏎</button><button>-</button><button>|</button><button>:</button><button>\</button><button>"</button><button>%</button>
+</div>
+</section>
+<section id="input"><div id="input-box"></div></section>
+</div>
+<div id="right">
+<section id="sheet">
+<div id="warnings"></div>
+<div id="canvas"></div>
+</section>
+<section id="export">
+<div id="midi-container"></div>
+<div id="midi-download" style="display: none;"></div>
+<button id="button-fresh-abc" class="wide">Empty ABC</button>
+<button id="button-import-abc" class="wide">Open ABC file</button>
+<button id="button-export-abc" class="wide">Save ABC file</button>
+<button id="button-export-png" class="wide">Export as PNG</button>
+<button id="button-export-svg" class="wide">Export as SVG</button>
+<button id="button-export-midi" class="wide">Export as MIDI</button>
+</section>
+</div>
+<div id="help">
+<h1>Quick reference on the ABC syntax</h1>
+<p>Notes are entered as <code>CDEFGAB</code>. Use <code>cdefgab</code> for the next octave, and <code>,</code> or <code>'</code> after a note for even lower or higher octaves. Simple rests are denoted by <code>z</code>.</p>
+
+<p>Accidentals are given by <code>^</code> for a sharp, <code>_</code> for flat, and <code>=</code> for natural. These symbols precede the note. Use the <code>K:</code> header for the overall key.</p>
+
+<p>The note length is denoted by a number after the note itself, it is based on the standard length given in the <code>L:</code> header. For shorter notes, use <code>/2</code> (or just <code>/</code>) etc. For dotted notes use <code>3</code> as the length, or <code>3/2</code> etc. Alternatively, you can put a <code>&lt;</code> or <code>&gt;</code> between two notes to make one dotted and the other halved.</p>
+
+<p>A triplet is denoted as <code>(3CDE</code>, you can also use similar notations for duplets, quadruplets, etc.</p>
+
+<p>You can enter bar lines by <code>|</code>, end bars by <code>|]</code>, and repetitions by <code>|:</code> and <code>:|</code>. The meter is given in the <code>M:</code> header field.</p>
+
+<p>For ties, put a <code>-</code> between the notes, for slures put the notes in <code>()</code>. To have separate beams, put a space between two notes. Otherwise, spaces just increase legibility, and can be put in most places. For chords, use <code>[]</code> around the notes.</p>
+
+<p>At the very beginning some headers with metadata appear. Note that the <code>X:</code> header (an index number, you can ignore it unless you want to edit two or more tunes at once, which isn’t well supported) should come first, and the <code>K:</code> header last. Many headers can be changed inside the tune, to do so, you have to put the new header in square brackets.</p>
+
+<p>Apart from the header fields mentioned above, there is also the <code>T:</code> header, which you can use to add a title. For the author, use <code>A:</code>, for the composer <code>C:</code>.</p>
+
+<p>To get a different clef, you can use the <code>V:</code> header, e.g. <code>V:voice1 clef=bass</code>. You can use more than one <code>V:</code> header (with different IDs) for more than one voice in the same system, precede the line of notes with <code>[V:voice1]</code> etc. to indicate which voice they belong to.
+
+<p>An important header for playing the music is <code>Q:</code> to specify the tempo. If you’re playing the music too fast, it might fall out of the rhythm, this can even happen with the default tempo. In such a case you should add this header and define a slower tempo. E.g., if you have a meter of <code>M:4/4</code> or <code>M:3/4</code> (or anything else with <code>/4</code>, and set <code>Q:120</code>, you’ll get 120 quarter notes per minute. Or you explicitely say <code>Q:1/4=120</code>, which will give you the same, but doesn’t depend on the meter.</p>
+
+<p>For more information about the ABC format, please see <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank">the official documentation</a> or any other documentation you can find.</p>
+
+<p>A quick reference for the most important keys (<code>K:</code> header field):
+<table>
+<tr><td></td><th>major</th><th>minor</th></tr>
+<tr><th>7b</th><td><code>Cb</code></td><td><code>Abmin</code></td></tr>
+<tr><th>6b</th><td><code>Gb</code></td><td><code>Ebmin</code></td></tr>
+<tr><th>5b</th><td><code>Db</code></td><td><code>Bbmin</code></td></tr>
+<tr><th>4b</th><td><code>Ab</code></td><td><code>Fmin</code></td></tr>
+<tr><th>3b</th><td><code>Eb</code></td><td><code>Cmin</code></td></tr>
+<tr><th>2b</th><td><code>Bb</code></td><td><code>Gmin</code></td></tr>
+<tr><th>1b</th><td><code>F</code></td><td><code>Dmin</code></td></tr>
+<tr><th>0</th><td><code>C</code></td><td><code>Amin</code></td></tr>
+<tr><th>1#</th><td><code>G</code></td><td><code>Emin</code></td></tr>
+<tr><th>2#</th><td><code>D</code></td><td><code>Bmin</code></td></tr>
+<tr><th>3#</th><td><code>A</code></td><td><code>F#min</code></td></tr>
+<tr><th>4#</th><td><code>E</code></td><td><code>C#min</code></td></tr>
+<tr><th>5#</th><td><code>B</code></td><td><code>G#min</code></td></tr>
+<tr><th>6#</th><td><code>F#</code></td><td><code>D#min</code></td></tr>
+<tr><th>7#</th><td><code>C#</code></td><td><code>A#min</code></td></tr>
+</table>
+</p>
+</div>
+<script src="res/app.js"></script>
+</body></html>

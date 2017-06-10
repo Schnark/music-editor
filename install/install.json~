@@ -1,0 +1,19 @@
+{
+	"@comment": "Note that the code to transform these data into a webpage is in https://github.com/Schnark/schnark.github.io",
+	"title": {
+		"en": "Unicode Browser – App for Firefox OS",
+		"de": "Unicode-Browser – App für Firefox OS"
+	},
+	"serviceworker": true,
+	"icon": "icons/icon-128.png",
+	"screenshots": [
+		"1.png",
+		"2.png",
+		"3.png",
+		"4.png"
+	],
+	"desc": {
+		"en": ["This app allows you to explore all Unicode characters. You can search by block, script, direct input or name search."],
+		"de": ["Diese App ermöglicht es, alle Unicode-Zeichen zu erkunden. Es gibt eine Suche nach Block, Schriftsystem, Direkteingabe und eine Namenssuche."]
+	}
+}

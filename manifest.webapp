@@ -1,0 +1,32 @@
+{
+	"version": "1.0",
+	"name": "Music Editor",
+	"description": "ABC music editor",
+	"launch_path": "/index.html",
+	"icons": {
+		"128": "/res/icon-128.png",
+		"512": "/res/icon-512.png"
+	},
+	"developer": {
+		"name": "Michael Müller",
+		"url": "https://github.com/Schnark"
+	},
+	"default_locale": "en",
+	"activities": {
+		"open": {
+			"filters": {
+				"type": [
+					"text/vnd.abc",
+					""
+				],
+				"filename": {
+					"pattern": ".*\\.abc",
+					"regexp": "\\.abc$"
+				}
+			},
+			"disposition": "window",
+			"returnValue": false,
+			"href": "/index.html"
+		}
+	}
+}

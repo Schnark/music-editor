@@ -1,0 +1,81 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: sans-serif;
+}
+
+svg {
+	pointer-events: none; /*fix scrolling*/
+}
+
+svg * {
+	pointer-events: auto;
+}
+
+code {
+	font-family: monospace, sans-serif;
+	color: black;
+	background-color: #ddd;
+}
+
+#left {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+#right {
+	float: right;
+	width: 50%;
+	height: 100%;
+}
+
+section, #help {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: auto;
+	width: 100%;
+	height: 50%;
+	padding: 0.5em;
+	overflow: auto;
+}
+
+button.wide {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	height: 2em;
+	line-height: 2em;
+	display: block;
+	margin: 5px 0;
+	font: inherit;
+}
+
+#help {
+	clear: both;
+	height: auto;
+}
+
+@media (max-width: 32em), (max-height: 25em) {
+	#left, #right {
+		width: 100%;
+	}
+
+	#left, #right, #keyboard, #sheet, #export {
+		height: auto;
+	}
+
+	#sheet {
+		min-height: 10em;
+		max-height: 16em;
+		max-height: 67vh;
+	}
+
+	#input {
+		min-height: 5em;
+		height: 8em;
+		height: 33vh;
+	}
+}
