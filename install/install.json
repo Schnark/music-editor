@@ -2,7 +2,7 @@
 	"@comment": "Note that the code to transform these data into a webpage is in https://github.com/Schnark/schnark.github.io",
 	"title": {
 		"en": "Music Editor – App for Firefox OS",
-		"de": "Music Editor – App für Firefox OS"
+		"de": "Musikeditor – App für Firefox OS"
 	},
 	"serviceworker": true,
 	"icon": "res/icon-128.png",

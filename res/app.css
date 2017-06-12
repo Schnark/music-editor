@@ -20,6 +20,14 @@ code {
 	background-color: #ddd;
 }
 
+body.lang-en .lang:not([lang="en"]) {
+	display: none;
+}
+
+body.lang-de .lang:not([lang="de"]) {
+	display: none;
+}
+
 #left {
 	float: left;
 	width: 50%;

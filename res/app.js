@@ -5,6 +5,17 @@
 var inputBox, editor,
 	emptyAbc = 'X:1\nT:\nM:4/4\nL:1/4\nK:C\n';
 
+function updateL10N () {
+	var langs = {
+		de: 'Musikeditor'
+	}, lang;
+	lang = (navigator.language || '').replace(/-.*/, '');
+	if (langs[lang]) {
+		document.title = langs[lang];
+		document.body.className = 'lang-' + lang;
+	}
+}
+
 function getRenderOptions () {
 	return {
 		staffwidth: document.getElementById('warnings').clientWidth - 15,
@@ -87,6 +98,8 @@ function init () {
 	/*jshint camelcase: false*/
 	//jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 	ABCJS.midi.soundfontUrl = 'res/lib/';
+
+	updateL10N();
 
 	inputBox = new InputBox('input-box');
 	inputBox.enableAutosave('music-editor-autosave', emptyAbc);

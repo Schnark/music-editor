@@ -26,7 +26,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <script src="res/inputbox.js"></script>
 <script src="res/keyboard.js"></script>
 <script src="res/lib/abc.js"></script>
-</head><body>
+</head><body class="lang-en">
 <div id="left">
 <section id="keyboard">
 <input>
@@ -61,15 +61,16 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <section id="export">
 <div id="midi-container"></div>
 <div id="midi-download" style="display: none;"></div>
-<button id="button-fresh-abc" class="wide">Empty ABC</button>
-<button id="button-import-abc" class="wide">Open ABC file</button>
-<button id="button-export-abc" class="wide">Save ABC file</button>
-<button id="button-export-png" class="wide">Export as PNG</button>
-<button id="button-export-svg" class="wide">Export as SVG</button>
-<button id="button-export-midi" class="wide">Export as MIDI</button>
+<button id="button-fresh-abc" class="wide"><span class="lang" lang="en">Empty ABC file</span><span class="lang" lang="de">Leere ABC-Datei</span></button>
+<button id="button-import-abc" class="wide"><span class="lang" lang="en">Open ABC file</span><span class="lang" lang="de">ABC-Datei öffnen</span></button>
+<button id="button-export-abc" class="wide"><span class="lang" lang="en">Save ABC file</span><span class="lang" lang="de">ABC-Datei speichern</span></button>
+<button id="button-export-png" class="wide"><span class="lang" lang="en">Export as PNG</span><span class="lang" lang="de">Als PNG exportieren</span></button>
+<button id="button-export-svg" class="wide"><span class="lang" lang="en">Export as SVG</span><span class="lang" lang="de">Als SVG exportieren</span></button>
+<button id="button-export-midi" class="wide"><span class="lang" lang="en">Export as MIDI</span><span class="lang" lang="de">Als MIDI exportieren</span></button>
 </section>
 </div>
 <div id="help">
+<div class="lang" lang="en">
 <h1>Quick reference on the ABC syntax</h1>
 <p>Notes are entered as <code>CDEFGAB</code>. Use <code>cdefgab</code> for the next octave, and <code>,</code> or <code>'</code> after a note for even lower or higher octaves. Simple rests are denoted by <code>z</code>.</p>
 
@@ -89,7 +90,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 
 <p>To get a different clef, you can use the <code>V:</code> header, e.g. <code>V:voice1 clef=bass</code>. You can use more than one <code>V:</code> header (with different IDs) for more than one voice in the same system, precede the line of notes with <code>[V:voice1]</code> etc. to indicate which voice they belong to.
 
-<p>An important header for playing the music is <code>Q:</code> to specify the tempo. If you’re playing the music too fast, it might fall out of the rhythm, this can even happen with the default tempo. In such a case you should add this header and define a slower tempo. E.g., if you have a meter of <code>M:4/4</code> or <code>M:3/4</code> (or anything else with <code>/4</code>, and set <code>Q:120</code>, you’ll get 120 quarter notes per minute. Or you explicitely say <code>Q:1/4=120</code>, which will give you the same, but doesn’t depend on the meter.</p>
+<p>An important header for playing the music is <code>Q:</code> to specify the tempo. If you’re playing the music too fast, it might fall out of the rhythm, this can even happen with the default tempo. In such a case you should add this header and define a slower tempo. E.g., if you have a meter of <code>M:4/4</code> or <code>M:3/4</code> (or anything else with <code>/4</code>), and set <code>Q:120</code>, you’ll get 120 quarter notes per minute. Or you explicitely say <code>Q:1/4=120</code>, which will give you the same, but doesn’t depend on the meter.</p>
 
 <p>For more information about the ABC format, please see <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank">the official documentation</a> or any other documentation you can find.</p>
 
@@ -114,5 +115,50 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 </table>
 </p>
 </div>
+<div class="lang" lang="de">
+<h1>Kurzübersicht zur ABC-Syntax</h1>
+<p>Noten werden als <code>CDEFGAB</code> eingegeben. <strong>Achtung:</strong> Das deutsche H wird als <code>B</code> notiert! Nutze <code>cdefgab</code> für die nächste Oktave und <code>,</code> oder <code>'</code> nach einer Note für noch tiefere oder höhere Oktaven. Einfach Pausen werden als <code>z</code> notiert.</p>
+
+<p>Vorzeichen werden angegeben mit <code>^</code> für ein Kreuz, <code>_</code> für b und <code>=</code> für ein Auflösungszeichen. Diese Symbole gehen der Note voraus. Nutze die <code>K:</code>-Kopfzeile für die Tonart.</p>
+
+<p>Die Notenlänge wird durch eine Zahl hinter der Note angegeben, sie basiert auf der Standardlänge, die in der <code>L:</code>-Kopfzeile festgelegt wurde. Nutze <code>/2</code> (oder nur <code>/</code>) für kürzere Noten, etc. Für punktierte Noten nimmst du <code>3</code> als Länge oder <code>3/2</code> etc. Alternativ kannst du <code>&lt;</code> oder <code>&gt;</code> zwischen zwei Noten setzen um die eine zu punktieren und die andere zu halbieren.</p>
+
+<p>Triolen werden als <code>(3CDE</code> notiert, eine analoge Syntax gibt es für Duolen, Quartolen etc.</p>
+
+<p>Taktstriche kannst du als <code>|</code> einfügen, Endstriche mit <code>|]</code> und Wiederholungszeichen als <code>|:</code> und <code>:|</code>. Die Taktangabe steht in der <code>M:</code>-Kopfzeile.</p>
+
+<p>Für einen Bindebogen fügst du <code>-</code> zwischen den Noten ein, für einen Phrasierungsbogen umschließt du sie mit <code>()</code>. Um getrennte Fähnchen zu erhalten fügst du ein Leerzeichen zwischen den Noten ein, ansonsten dienen Leerzeichen nur der Lesbarkeit und können an den meisten Stellen eingefügt werden. Akkorde werden mit <code>[]</code> um die Noten erzeugt.</p>
+
+<p>Ganz am Anfang stehen einige Kopfzeilen mit Metadaten. Beachte, dass die <code>X:</code>-Kopfzeile (eine Indexnummer, die du ignorieren kannst, sofern du nicht zwei oder mehr Melodien in einer Datei haben möchtest, was aber nicht vollständig unterstützt wird) als erste kommen sollte, während die <code>K:</code>-Kopfzeile den Abschluss bildet. Viele Kopfzeilen können auch innerhalb der Melodie geändert werden, dazu musst du sie in eckige Klammern einschließen.</p>
+
+<p>Neben den oben erwähnten Kopfzeilen gibt es noch die <code>T:</code>-Kopfzeile, die den Titel nennt. Nutze <code>A:</code> für den Autor und <code>C:</code> für den Komponist.</p>
+
+<p>Für einen anderen Notenschlüssel kannst du die <code>V:</code>-Kopfzeile verwenden, beispielsweise <code>V:voice1 clef=bass</code>. Mit mehr als einer <code>V:</code>-Kopfzeile (mit verschiednen IDs) kannst du mehrere Stimmen in einem System notieren, stelle dazu allen Notenzeilen ein <code>[V:voice1]</code> etc. voran um anzugeben, zu welcher Stimme sie gehören.
+
+<p>Eine wichtige Kopfzeile zum Spielen der Musik ist <code>Q:</code> mit der Angabe des Tempos. Wenn du die Musik zu schnell abspielen lässt, dann kann sie aus dem Takt geraten, dies kann auch bei den Standardeinstellungen passieren. In solch einem Fall solltest du diese Kopfzeile hinzufügen und ein langsameres Tempo definieren. Wenn du beispielsweise einen Takt von <code>M:4/4</code> oder <code>M:3/4</code> (oder jedem anderen Takt mit <code>/4</code>) hast und <code>Q:120</code> setzt, dann bekommst du 120 Viertelnoten pro Minute. Oder du schreibst explizit <code>Q:1/4=120</code>, was das Gleiche ergibt, aber unabhängig von der Taktart ist.</p>
+
+<p>Weitere Informationen über das ABC-Format gibt es in der <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank">offiziellen Dokumentation</a> (englisch) oder jeder anderen Dokumentation, die du finden kannst.</p>
+
+<p>Eine kurze Übersicht für die wichtigsten Tonarten (<code>K:</code>-Kopfzeile):
+<table>
+<tr><td></td><th>Dur</th><th>Moll</th></tr>
+<tr><th>7b</th><td><code>Cb</code></td><td><code>Abmin</code></td></tr>
+<tr><th>6b</th><td><code>Gb</code></td><td><code>Ebmin</code></td></tr>
+<tr><th>5b</th><td><code>Db</code></td><td><code>Bbmin</code></td></tr>
+<tr><th>4b</th><td><code>Ab</code></td><td><code>Fmin</code></td></tr>
+<tr><th>3b</th><td><code>Eb</code></td><td><code>Cmin</code></td></tr>
+<tr><th>2b</th><td><code>Bb</code></td><td><code>Gmin</code></td></tr>
+<tr><th>1b</th><td><code>F</code></td><td><code>Dmin</code></td></tr>
+<tr><th>0</th><td><code>C</code></td><td><code>Amin</code></td></tr>
+<tr><th>1#</th><td><code>G</code></td><td><code>Emin</code></td></tr>
+<tr><th>2#</th><td><code>D</code></td><td><code>Bmin</code></td></tr>
+<tr><th>3#</th><td><code>A</code></td><td><code>F#min</code></td></tr>
+<tr><th>4#</th><td><code>E</code></td><td><code>C#min</code></td></tr>
+<tr><th>5#</th><td><code>B</code></td><td><code>G#min</code></td></tr>
+<tr><th>6#</th><td><code>F#</code></td><td><code>D#min</code></td></tr>
+<tr><th>7#</th><td><code>C#</code></td><td><code>A#min</code></td></tr>
+</table>
+</p>
+</div></div>
 <script src="res/app.js"></script>
 </body></html>
