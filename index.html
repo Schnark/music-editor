@@ -84,34 +84,36 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 
 <p>For ties, put a <code>-</code> between the notes, for slures put the notes in <code>()</code>. To have separate beams, put a space between two notes. Otherwise, spaces just increase legibility, and can be put in most places. For chords, use <code>[]</code> around the notes.</p>
 
+<p>Bars will be broken at the same places as the lines, but you can end a line with <code>\</code> to suppress a break. Use <code>%</code> for comments, especially to temporarily comment out parts while you concentrate on others.</p>
+
 <p>At the very beginning some headers with metadata appear. Note that the <code>X:</code> header (an index number, you can ignore it unless you want to edit two or more tunes at once, which isn’t well supported) should come first, and the <code>K:</code> header last. Many headers can be changed inside the tune, to do so, you have to put the new header in square brackets.</p>
 
-<p>Apart from the header fields mentioned above, there is also the <code>T:</code> header, which you can use to add a title. For the author, use <code>A:</code>, for the composer <code>C:</code>.</p>
+<p>Apart from the header fields mentioned above, there is also the <code>T:</code> header (directly after the <code>X:</code> header), which you can use to add a title. For the composer, use <code>C:</code>.</p>
 
-<p>To get a different clef, you can use the <code>V:</code> header, e.g. <code>V:voice1 clef=bass</code>. You can use more than one <code>V:</code> header (with different IDs) for more than one voice in the same system, precede the line of notes with <code>[V:voice1]</code> etc. to indicate which voice they belong to.
+<p>To get a different clef, you can put something like <code>clef=bass</code> behind the key in the <code>K:</code> header. Alternatively, you can use the <code>V:</code> header, e.g. <code>V:voice1 clef=bass</code>. You can use more than one <code>V:</code> header (with different IDs) for more than one voice in the same system, precede the line of notes with <code>[V:voice1]</code> etc. to indicate which voice they belong to.</p>
 
-<p>An important header for playing the music is <code>Q:</code> to specify the tempo. If you’re playing the music too fast, it might fall out of the rhythm, this can even happen with the default tempo. In such a case you should add this header and define a slower tempo. E.g., if you have a meter of <code>M:4/4</code> or <code>M:3/4</code> (or anything else with <code>/4</code>), and set <code>Q:120</code>, you’ll get 120 quarter notes per minute. Or you explicitely say <code>Q:1/4=120</code>, which will give you the same, but doesn’t depend on the meter.</p>
+<p>An important header for playing the music is <code>Q:</code> to specify the tempo. If you’re playing the music too fast, it might fall out of the rhythm, this can even happen with the default tempo. In such a case you should add this header and define a slower tempo. With <code>Q:1/4=120</code>, for example, you get 120 quaters per minute.</p>
 
-<p>For more information about the ABC format, please see <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank">the official documentation</a> or any other documentation you can find.</p>
+<p>For more information about the ABC format, please see <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank" rel="noopener">the official documentation</a> or any other documentation you can find.</p>
 
 <p>A quick reference for the most important keys (<code>K:</code> header field):
 <table>
 <tr><td></td><th>major</th><th>minor</th></tr>
-<tr><th>7b</th><td><code>Cb</code></td><td><code>Abmin</code></td></tr>
-<tr><th>6b</th><td><code>Gb</code></td><td><code>Ebmin</code></td></tr>
-<tr><th>5b</th><td><code>Db</code></td><td><code>Bbmin</code></td></tr>
-<tr><th>4b</th><td><code>Ab</code></td><td><code>Fmin</code></td></tr>
-<tr><th>3b</th><td><code>Eb</code></td><td><code>Cmin</code></td></tr>
-<tr><th>2b</th><td><code>Bb</code></td><td><code>Gmin</code></td></tr>
-<tr><th>1b</th><td><code>F</code></td><td><code>Dmin</code></td></tr>
-<tr><th>0</th><td><code>C</code></td><td><code>Amin</code></td></tr>
-<tr><th>1#</th><td><code>G</code></td><td><code>Emin</code></td></tr>
-<tr><th>2#</th><td><code>D</code></td><td><code>Bmin</code></td></tr>
-<tr><th>3#</th><td><code>A</code></td><td><code>F#min</code></td></tr>
-<tr><th>4#</th><td><code>E</code></td><td><code>C#min</code></td></tr>
-<tr><th>5#</th><td><code>B</code></td><td><code>G#min</code></td></tr>
-<tr><th>6#</th><td><code>F#</code></td><td><code>D#min</code></td></tr>
-<tr><th>7#</th><td><code>C#</code></td><td><code>A#min</code></td></tr>
+<tr><th>7b</th><td><code>Cb</code></td><td><code>Abm</code></td></tr>
+<tr><th>6b</th><td><code>Gb</code></td><td><code>Ebm</code></td></tr>
+<tr><th>5b</th><td><code>Db</code></td><td><code>Bbm</code></td></tr>
+<tr><th>4b</th><td><code>Ab</code></td><td><code>Fm</code></td></tr>
+<tr><th>3b</th><td><code>Eb</code></td><td><code>Cm</code></td></tr>
+<tr><th>2b</th><td><code>Bb</code></td><td><code>Gm</code></td></tr>
+<tr><th>1b</th><td><code>F</code></td><td><code>Dm</code></td></tr>
+<tr><th>0</th><td><code>C</code></td><td><code>Am</code></td></tr>
+<tr><th>1#</th><td><code>G</code></td><td><code>Em</code></td></tr>
+<tr><th>2#</th><td><code>D</code></td><td><code>Bm</code></td></tr>
+<tr><th>3#</th><td><code>A</code></td><td><code>F#m</code></td></tr>
+<tr><th>4#</th><td><code>E</code></td><td><code>C#m</code></td></tr>
+<tr><th>5#</th><td><code>B</code></td><td><code>G#m</code></td></tr>
+<tr><th>6#</th><td><code>F#</code></td><td><code>D#m</code></td></tr>
+<tr><th>7#</th><td><code>C#</code></td><td><code>A#m</code></td></tr>
 </table>
 </p>
 </div>
@@ -129,34 +131,36 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 
 <p>Für einen Bindebogen fügst du <code>-</code> zwischen den Noten ein, für einen Phrasierungsbogen umschließt du sie mit <code>()</code>. Um getrennte Fähnchen zu erhalten fügst du ein Leerzeichen zwischen den Noten ein, ansonsten dienen Leerzeichen nur der Lesbarkeit und können an den meisten Stellen eingefügt werden. Akkorde werden mit <code>[]</code> um die Noten erzeugt.</p>
 
+<p>Die Notenzeilen werden dort umbrochen, wo auch die Zeilenumbrüche sind, aber du kannst eine Zeile mit <code>\</code> beenden um den Umbruch zu unterdrücken. Verwende <code>%</code> für Kommentare, besonders um temporär Teile auszukommentieren, während du dich auf andere konzentrierst.</p>
+
 <p>Ganz am Anfang stehen einige Kopfzeilen mit Metadaten. Beachte, dass die <code>X:</code>-Kopfzeile (eine Indexnummer, die du ignorieren kannst, sofern du nicht zwei oder mehr Melodien in einer Datei haben möchtest, was aber nicht vollständig unterstützt wird) als erste kommen sollte, während die <code>K:</code>-Kopfzeile den Abschluss bildet. Viele Kopfzeilen können auch innerhalb der Melodie geändert werden, dazu musst du sie in eckige Klammern einschließen.</p>
 
-<p>Neben den oben erwähnten Kopfzeilen gibt es noch die <code>T:</code>-Kopfzeile, die den Titel nennt. Nutze <code>A:</code> für den Autor und <code>C:</code> für den Komponist.</p>
+<p>Neben den oben erwähnten Kopfzeilen gibt es noch die <code>T:</code>-Kopfzeile (direkt nach der <code>X:</code>-Kopfzeile), die den Titel nennt. Nutze <code>C:</code> für den Komponisten.</p>
 
-<p>Für einen anderen Notenschlüssel kannst du die <code>V:</code>-Kopfzeile verwenden, beispielsweise <code>V:voice1 clef=bass</code>. Mit mehr als einer <code>V:</code>-Kopfzeile (mit verschiednen IDs) kannst du mehrere Stimmen in einem System notieren, stelle dazu allen Notenzeilen ein <code>[V:voice1]</code> etc. voran um anzugeben, zu welcher Stimme sie gehören.
+<p>Für einen anderen Notenschlüssel kannst du hinter der Tonart in der <code>K:</code>-Kopfzeile etwa <code>clef=bass</code> angeben. Alternativ kannst du die <code>V:</code>-Kopfzeile verwenden, beispielsweise <code>V:voice1 clef=bass</code>. Mit mehr als einer <code>V:</code>-Kopfzeile (mit verschiednen IDs) kannst du mehrere Stimmen in einem System notieren, stelle dazu allen Notenzeilen ein <code>[V:voice1]</code> etc. voran um anzugeben, zu welcher Stimme sie gehören.</p>
 
-<p>Eine wichtige Kopfzeile zum Spielen der Musik ist <code>Q:</code> mit der Angabe des Tempos. Wenn du die Musik zu schnell abspielen lässt, dann kann sie aus dem Takt geraten, dies kann auch bei den Standardeinstellungen passieren. In solch einem Fall solltest du diese Kopfzeile hinzufügen und ein langsameres Tempo definieren. Wenn du beispielsweise einen Takt von <code>M:4/4</code> oder <code>M:3/4</code> (oder jedem anderen Takt mit <code>/4</code>) hast und <code>Q:120</code> setzt, dann bekommst du 120 Viertelnoten pro Minute. Oder du schreibst explizit <code>Q:1/4=120</code>, was das Gleiche ergibt, aber unabhängig von der Taktart ist.</p>
+<p>Eine wichtige Kopfzeile zum Spielen der Musik ist <code>Q:</code> mit der Angabe des Tempos. Wenn du die Musik zu schnell abspielen lässt, dann kann sie aus dem Takt geraten, dies kann auch bei den Standardeinstellungen passieren. In solch einem Fall solltest du diese Kopfzeile hinzufügen und ein langsameres Tempo definieren. Mit <code>Q:1/4=120</code> erhältst du beispielsweise 120 Viertelnoten pro Minute.</p>
 
-<p>Weitere Informationen über das ABC-Format gibt es in der <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank">offiziellen Dokumentation</a> (englisch) oder jeder anderen Dokumentation, die du finden kannst.</p>
+<p>Weitere Informationen über das ABC-Format gibt es in der <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank" rel="noopener">offiziellen Dokumentation</a> (englisch) oder jeder anderen Dokumentation, die du finden kannst.</p>
 
 <p>Eine kurze Übersicht für die wichtigsten Tonarten (<code>K:</code>-Kopfzeile):
 <table>
 <tr><td></td><th>Dur</th><th>Moll</th></tr>
-<tr><th>7b</th><td><code>Cb</code></td><td><code>Abmin</code></td></tr>
-<tr><th>6b</th><td><code>Gb</code></td><td><code>Ebmin</code></td></tr>
-<tr><th>5b</th><td><code>Db</code></td><td><code>Bbmin</code></td></tr>
-<tr><th>4b</th><td><code>Ab</code></td><td><code>Fmin</code></td></tr>
-<tr><th>3b</th><td><code>Eb</code></td><td><code>Cmin</code></td></tr>
-<tr><th>2b</th><td><code>Bb</code></td><td><code>Gmin</code></td></tr>
-<tr><th>1b</th><td><code>F</code></td><td><code>Dmin</code></td></tr>
-<tr><th>0</th><td><code>C</code></td><td><code>Amin</code></td></tr>
-<tr><th>1#</th><td><code>G</code></td><td><code>Emin</code></td></tr>
-<tr><th>2#</th><td><code>D</code></td><td><code>Bmin</code></td></tr>
-<tr><th>3#</th><td><code>A</code></td><td><code>F#min</code></td></tr>
-<tr><th>4#</th><td><code>E</code></td><td><code>C#min</code></td></tr>
-<tr><th>5#</th><td><code>B</code></td><td><code>G#min</code></td></tr>
-<tr><th>6#</th><td><code>F#</code></td><td><code>D#min</code></td></tr>
-<tr><th>7#</th><td><code>C#</code></td><td><code>A#min</code></td></tr>
+<tr><th>7b</th><td><code>Cb</code></td><td><code>Abm</code></td></tr>
+<tr><th>6b</th><td><code>Gb</code></td><td><code>Ebm</code></td></tr>
+<tr><th>5b</th><td><code>Db</code></td><td><code>Bbm</code></td></tr>
+<tr><th>4b</th><td><code>Ab</code></td><td><code>Fm</code></td></tr>
+<tr><th>3b</th><td><code>Eb</code></td><td><code>Cm</code></td></tr>
+<tr><th>2b</th><td><code>Bb</code></td><td><code>Gm</code></td></tr>
+<tr><th>1b</th><td><code>F</code></td><td><code>Dm</code></td></tr>
+<tr><th>0</th><td><code>C</code></td><td><code>Am</code></td></tr>
+<tr><th>1#</th><td><code>G</code></td><td><code>Em</code></td></tr>
+<tr><th>2#</th><td><code>D</code></td><td><code>Bm</code></td></tr>
+<tr><th>3#</th><td><code>A</code></td><td><code>F#m</code></td></tr>
+<tr><th>4#</th><td><code>E</code></td><td><code>C#m</code></td></tr>
+<tr><th>5#</th><td><code>B</code></td><td><code>G#m</code></td></tr>
+<tr><th>6#</th><td><code>F#</code></td><td><code>D#m</code></td></tr>
+<tr><th>7#</th><td><code>C#</code></td><td><code>A#m</code></td></tr>
 </table>
 </p>
 </div></div>

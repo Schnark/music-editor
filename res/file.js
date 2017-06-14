@@ -87,7 +87,14 @@ function openAbc (callback) {
 	var pick;
 	if (window.MozActivity) {
 		pick = new MozActivity({
-			name: 'pick'
+			name: 'pick',
+			data: {
+				type: [
+					'text/vnd.abc',
+					'text/plain',
+					'application/pdf' //this is ridiculous, but it does work
+				]
+			}
 		});
 
 		pick.onsuccess = function () {

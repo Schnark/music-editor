@@ -1,8 +1,8 @@
 {
-	"version": "1.1",
+	"version": "1.2",
 	"name": "Music Editor",
 	"description": "ABC music editor",
-	"size": 1113080,
+	"size": 1113270,
 	"package_path": "https://schnark.github.io/music-editor/music-editor.zip",
 	"icons": {
 		"128": "/res/icon-128.png",
