@@ -61,6 +61,10 @@ button.wide {
 	font: inherit;
 }
 
+#midi-container {
+	margin-bottom: 2em;
+}
+
 #help {
 	clear: both;
 	height: auto;
