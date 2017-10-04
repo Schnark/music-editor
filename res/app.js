@@ -1,4 +1,4 @@
-/*global InputBox, Keyboard, file, ABCJS*/
+/*global InputBox, Keyboard, audioInput, file, ABCJS*/
 (function () {
 "use strict";
 
@@ -63,6 +63,25 @@ function onExportMidi () {
 	file.save.midi(document.getElementById('midi-download').getElementsByTagName('a')[0].href, getExportFileName());
 }
 
+function onAudioInputStart () {
+	showHideAudio(false);
+	audioInput.start(function (note) {
+		inputBox.insert(note);
+	}, function () {
+		showHideAudio(true);
+	});
+}
+
+function onAudioInputEnd () {
+	audioInput.end();
+	showHideAudio(true);
+}
+
+function showHideAudio (showStart) {
+	document.getElementById('button-audio-start').style.display = showStart ? '' : 'none';
+	document.getElementById('button-audio-end').style.display = showStart ? 'none' : '';
+}
+
 function initEvents () {
 	var resizing;
 
@@ -82,6 +101,8 @@ function initEvents () {
 	document.getElementById('button-export-png').onclick = onExportPng;
 	document.getElementById('button-export-svg').onclick = onExportSvg;
 	document.getElementById('button-export-midi').onclick = onExportMidi;
+	document.getElementById('button-audio-start').onclick = onAudioInputStart;
+	document.getElementById('button-audio-end').onclick = onAudioInputEnd;
 
 	window.addEventListener('resize', function () {
 		if (resizing) {
@@ -100,6 +121,7 @@ function init () {
 	ABCJS.midi.soundfontUrl = 'res/lib/';
 
 	updateL10N();
+	showHideAudio(true);
 
 	inputBox = new InputBox('input-box');
 	inputBox.enableAutosave('music-editor-autosave', emptyAbc);

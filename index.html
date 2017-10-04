@@ -22,6 +22,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 }
 </script>
 <script src="res/lib/scroll.js"></script>
+<script src="res/audioinput.js"></script>
 <script src="res/file.js"></script>
 <script src="res/inputbox.js"></script>
 <script src="res/keyboard.js"></script>
@@ -61,6 +62,8 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <section id="export">
 <div id="midi-container"></div>
 <div id="midi-download" style="display: none;"></div>
+<button id="button-audio-start" class="wide"><span class="lang" lang="en">Start recording</span><span class="lang" lang="de">Aufzeichnung beginnen</span></button>
+<button id="button-audio-end" class="wide"><span class="lang" lang="en">Stop recording</span><span class="lang" lang="de">Aufzeichnung beenden</span></button>
 <button id="button-fresh-abc" class="wide"><span class="lang" lang="en">Empty ABC file</span><span class="lang" lang="de">Leere ABC-Datei</span></button>
 <button id="button-import-abc" class="wide"><span class="lang" lang="en">Open ABC file</span><span class="lang" lang="de">ABC-Datei öffnen</span></button>
 <button id="button-export-abc" class="wide"><span class="lang" lang="en">Save ABC file</span><span class="lang" lang="de">ABC-Datei speichern</span></button>
@@ -116,6 +119,8 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <tr><th>7#</th><td><code>C#</code></td><td><code>A#m</code></td></tr>
 </table>
 </p>
+
+<p>This app is free software, you can get the source from <a href="https://github.com/Schnark/music-editor" target="_blank" rel="noopener">GitHub</a>. It uses several libraries, most notably <a href="https://github.com/paulrosen/abcjs" target="_blank" rel="noopener">abcjs</a> and <a href="https://github.com/gleitz/midi-js-soundfonts" target="_blank" rel="noopener">MIDI.js Soundfonts</a>.</p>
 </div>
 <div class="lang" lang="de">
 <h1>Kurzübersicht zur ABC-Syntax</h1>
@@ -137,7 +142,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 
 <p>Neben den oben erwähnten Kopfzeilen gibt es noch die <code>T:</code>-Kopfzeile (direkt nach der <code>X:</code>-Kopfzeile), die den Titel nennt. Nutze <code>C:</code> für den Komponisten.</p>
 
-<p>Für einen anderen Notenschlüssel kannst du hinter der Tonart in der <code>K:</code>-Kopfzeile etwa <code>clef=bass</code> angeben. Alternativ kannst du die <code>V:</code>-Kopfzeile verwenden, beispielsweise <code>V:voice1 clef=bass</code>. Mit mehr als einer <code>V:</code>-Kopfzeile (mit verschiednen IDs) kannst du mehrere Stimmen in einem System notieren, stelle dazu allen Notenzeilen ein <code>[V:voice1]</code> etc. voran um anzugeben, zu welcher Stimme sie gehören.</p>
+<p>Für einen anderen Notenschlüssel kannst du hinter der Tonart in der <code>K:</code>-Kopfzeile etwa <code>clef=bass</code> angeben. Alternativ kannst du die <code>V:</code>-Kopfzeile verwenden, beispielsweise <code>V:voice1 clef=bass</code>. Mit mehr als einer <code>V:</code>-Kopfzeile (mit verschiedenen IDs) kannst du mehrere Stimmen in einem System notieren, stelle dazu allen Notenzeilen ein <code>[V:voice1]</code> etc. voran um anzugeben, zu welcher Stimme sie gehören.</p>
 
 <p>Eine wichtige Kopfzeile zum Spielen der Musik ist <code>Q:</code> mit der Angabe des Tempos. Wenn du die Musik zu schnell abspielen lässt, dann kann sie aus dem Takt geraten, dies kann auch bei den Standardeinstellungen passieren. In solch einem Fall solltest du diese Kopfzeile hinzufügen und ein langsameres Tempo definieren. Mit <code>Q:1/4=120</code> erhältst du beispielsweise 120 Viertelnoten pro Minute.</p>
 
@@ -163,6 +168,8 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <tr><th>7#</th><td><code>C#</code></td><td><code>A#m</code></td></tr>
 </table>
 </p>
+
+<p>Diese App ist freie Software, du kannst den Quelltext auf <a href="https://github.com/Schnark/music-editor" target="_blank" rel="noopener">GitHub</a> herunterladen. Sie nutzt verschiedene Bibliotheken, insbesondere <a href="https://github.com/paulrosen/abcjs" target="_blank" rel="noopener">abcjs</a> und <a href="https://github.com/gleitz/midi-js-soundfonts" target="_blank" rel="noopener">MIDI.js Soundfonts</a>.</p>
 </div></div>
 <script src="res/app.js"></script>
 </body></html>
