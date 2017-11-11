@@ -1,8 +1,8 @@
 {
-	"version": "1.4",
+	"version": "1.5",
 	"name": "Music Editor",
 	"description": "ABC music editor",
-	"size": 1115984,
+	"size": 1116053,
 	"package_path": "https://schnark.github.io/music-editor/music-editor.zip",
 	"icons": {
 		"128": "/res/icon-128.png",
@@ -15,7 +15,7 @@
 	"default_locale": "en",
 	"locales": {
 		"de": {
-			"name": "Muiskeditor"
+			"name": "Musikeditor"
 		}
 	},
 	"permissions": {
