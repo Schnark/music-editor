@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en"><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="viewport" content="width=device-width">
 <title>Music Editor</title>
 <link rel="stylesheet" href="res/app.css">
 <link rel="stylesheet" href="res/inputbox.css">
@@ -21,12 +21,13 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 	navigator.serviceWorker.register('sw.js');
 }
 </script>
-<script src="res/lib/scroll.js"></script>
-<script src="res/audioinput.js"></script>
-<script src="res/file.js"></script>
-<script src="res/inputbox.js"></script>
-<script src="res/keyboard.js"></script>
-<script src="res/lib/abc.js"></script>
+<script src="res/lib/scroll.js" defer></script>
+<script src="res/audioinput.js" defer></script>
+<script src="res/file.js" defer></script>
+<script src="res/inputbox.js" defer></script>
+<script src="res/keyboard.js" defer></script>
+<script src="res/lib/abc.js" defer></script>
+<script src="res/app.js" defer></script>
 </head><body class="lang-en">
 <div id="left">
 <section id="keyboard">
@@ -99,7 +100,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 
 <p>For more information about the ABC format, please see <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank" rel="noopener">the official documentation</a> or any other documentation you can find.</p>
 
-<p>A quick reference for the most important keys (<code>K:</code> header field):
+<p>A quick reference for the most important keys (<code>K:</code> header field):</p>
 <table>
 <tr><td></td><th>major</th><th>minor</th></tr>
 <tr><th>7b</th><td><code>Cb</code></td><td><code>Abm</code></td></tr>
@@ -118,7 +119,6 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <tr><th>6#</th><td><code>F#</code></td><td><code>D#m</code></td></tr>
 <tr><th>7#</th><td><code>C#</code></td><td><code>A#m</code></td></tr>
 </table>
-</p>
 
 <p>This app is free software, you can get the source from <a href="https://github.com/Schnark/music-editor" target="_blank" rel="noopener">GitHub</a>. It uses several libraries, most notably <a href="https://github.com/paulrosen/abcjs" target="_blank" rel="noopener">abcjs</a> and <a href="https://github.com/gleitz/midi-js-soundfonts" target="_blank" rel="noopener">MIDI.js Soundfonts</a>.</p>
 </div>
@@ -148,7 +148,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 
 <p>Weitere Informationen über das ABC-Format gibt es in der <a href="http://abcnotation.com/wiki/abc:standard:v2.1" target="_blank" rel="noopener">offiziellen Dokumentation</a> (englisch) oder jeder anderen Dokumentation, die du finden kannst.</p>
 
-<p>Eine kurze Übersicht für die wichtigsten Tonarten (<code>K:</code>-Kopfzeile):
+<p>Eine kurze Übersicht für die wichtigsten Tonarten (<code>K:</code>-Kopfzeile):</p>
 <table>
 <tr><td></td><th>Dur</th><th>Moll</th></tr>
 <tr><th>7b</th><td><code>Cb</code></td><td><code>Abm</code></td></tr>
@@ -167,9 +167,7 @@ if (navigator.serviceWorker && !(navigator.mozApps && navigator.mozApps.installP
 <tr><th>6#</th><td><code>F#</code></td><td><code>D#m</code></td></tr>
 <tr><th>7#</th><td><code>C#</code></td><td><code>A#m</code></td></tr>
 </table>
-</p>
 
 <p>Diese App ist freie Software, du kannst den Quelltext auf <a href="https://github.com/Schnark/music-editor" target="_blank" rel="noopener">GitHub</a> herunterladen. Sie nutzt verschiedene Bibliotheken, insbesondere <a href="https://github.com/paulrosen/abcjs" target="_blank" rel="noopener">abcjs</a> und <a href="https://github.com/gleitz/midi-js-soundfonts" target="_blank" rel="noopener">MIDI.js Soundfonts</a>.</p>
 </div></div>
-<script src="res/app.js"></script>
 </body></html>

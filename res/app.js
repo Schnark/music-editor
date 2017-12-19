@@ -11,6 +11,7 @@ function updateL10N () {
 	}, lang;
 	lang = (navigator.language || '').replace(/-.*/, '');
 	if (langs[lang]) {
+		document.documentElement.lang = lang;
 		document.title = langs[lang];
 		document.body.className = 'lang-' + lang;
 	}
