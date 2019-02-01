@@ -2,7 +2,8 @@
 (function (worker) {
 "use strict";
 
-var VERSION = 'v1.6',
+var PREFIX = 'music-editor',
+	VERSION = '1.6',
 	FILES = [
 		'index.html',
 		'res/app.css',
@@ -22,7 +23,7 @@ var VERSION = 'v1.6',
 
 worker.addEventListener('install', function (e) {
 	e.waitUntil(
-		caches.open(VERSION).then(function (cache) {
+		caches.open(PREFIX + ':' + VERSION).then(function (cache) {
 			return cache.addAll(FILES);
 		})
 	);
@@ -32,7 +33,7 @@ worker.addEventListener('activate', function (e) {
 	e.waitUntil(
 		caches.keys().then(function (keys) {
 			return Promise.all(keys.map(function (key) {
-				if (key !== VERSION) {
+				if (key.indexOf(PREFIX + ':') === 0 && key !== PREFIX + ':' + VERSION) {
 					return caches.delete(key);
 				}
 			}));
