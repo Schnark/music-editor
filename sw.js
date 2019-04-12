@@ -3,7 +3,7 @@
 "use strict";
 
 var PREFIX = 'music-editor',
-	VERSION = '1.6',
+	VERSION = '1.7',
 	FILES = [
 		'index.html',
 		'res/app.css',

@@ -83,17 +83,24 @@ function showHideAudio (showStart) {
 	document.getElementById('button-audio-end').style.display = showStart ? 'none' : '';
 }
 
-function initEvents () {
-	var resizing;
+function initEvents (inputBox) {
+	var init, resizing;
 
 	if (navigator.mozSetMessageHandler) {
 		navigator.mozSetMessageHandler('activity', function (request) {
+			clearTimeout(init);
 			file.import.abc(request.source.data.blob, function (text) {
 				if (text) {
 					inputBox.setString(text);
 				}
+				initEditor(inputBox);
 			});
 		});
+		init = setTimeout(function () {
+			initEditor(inputBox);
+		}, 300);
+	} else {
+		initEditor(inputBox);
 	}
 
 	document.getElementById('button-fresh-abc').onclick = onFreshAbc;
@@ -110,24 +117,19 @@ function initEvents () {
 			clearTimeout(resizing);
 		}
 		resizing = setTimeout(function () {
-			editor.paramChanged(getRenderOptions());
+			if (editor) {
+				editor.paramChanged(getRenderOptions());
+			}
 		}, 300);
 	});
 }
 
-function init () {
-	/*jshint nonew: false*/
+function initEditor (inputBox) {
 	/*jshint camelcase: false*/
 	//jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-	ABCJS.midi.soundfontUrl = 'res/lib/';
-
-	updateL10N();
-	showHideAudio(true);
-
-	inputBox = new InputBox('input-box');
-	inputBox.enableAutosave('music-editor-autosave', emptyAbc);
-
-	new Keyboard('keyboard', inputBox);
+	if (editor) {
+		return;
+	}
 	editor = new ABCJS.Editor(inputBox, {
 		canvas_id: 'canvas',
 		render_options: getRenderOptions(),
@@ -141,8 +143,20 @@ function init () {
 		generate_warnings: true,
 		warnings_id: 'warnings'
 	});
+}
 
-	initEvents();
+function init () {
+	/*jshint nonew: false*/
+	ABCJS.midi.soundfontUrl = 'res/lib/';
+
+	updateL10N();
+	showHideAudio(true);
+
+	inputBox = new InputBox('input-box');
+	inputBox.enableAutosave('music-editor-autosave', emptyAbc);
+
+	new Keyboard('keyboard', inputBox);
+	initEvents(inputBox);
 }
 
 init();
