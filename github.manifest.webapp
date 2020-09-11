@@ -1,8 +1,8 @@
 {
-	"version": "1.7",
+	"version": "1.8",
 	"name": "Music Editor",
 	"description": "ABC music editor",
-	"size": 1114241,
+	"size": 1088493,
 	"package_path": "https://schnark.github.io/music-editor/music-editor.zip",
 	"icons": {
 		"128": "/res/icon-128.png",
@@ -16,11 +16,6 @@
 	"locales": {
 		"de": {
 			"name": "Musikeditor"
-		}
-	},
-	"permissions": {
-		"audio-capture": {
-			"description": "Allow audio input"
 		}
 	},
 	"activities": {

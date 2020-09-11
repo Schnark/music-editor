@@ -3,12 +3,11 @@
 "use strict";
 
 var PREFIX = 'music-editor',
-	VERSION = '1.7',
+	VERSION = '1.8',
 	FILES = [
 		'index.html',
 		'res/app.css',
 		'res/app.js',
-		'res/audioinput.js',
 		'res/file.js',
 		'res/inputbox.css',
 		'res/inputbox.js',

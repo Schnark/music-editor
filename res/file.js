@@ -27,8 +27,8 @@ function createTextFile (text, type) {
 }
 
 function createSvgFile (svg) {
-	var str = (new XMLSerializer().serializeToString(svg)).replace(/<desc>.*?<\/desc>/, '');
-	return 'data:image/svg+xml;base64,' + btoa(str);
+	var str = (new XMLSerializer().serializeToString(svg));
+	return 'data:image/svg+xml,' + encodeURIComponent(str);
 }
 
 function createPngFile (svg, callback) {

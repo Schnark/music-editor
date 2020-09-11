@@ -1,0 +1,1 @@
+Version 1.7 included a feature to enter music via microphone. This was removed in 1.8, because it didn't really work. The main code is still here, in the hope I find the time to improve it. Additionally this requires: Two buttons in the HTML, initialisation code in app.js, and the permission in manifest.webapp.

@@ -1,5 +1,5 @@
 {
-	"version": "1.7",
+	"version": "1.8",
 	"name": "Music Editor",
 	"description": "ABC music editor",
 	"launch_path": "/index.html",
@@ -15,11 +15,6 @@
 	"locales": {
 		"de": {
 			"name": "Musikeditor"
-		}
-	},
-	"permissions": {
-		"audio-capture": {
-			"description": "Allow audio input"
 		}
 	},
 	"activities": {

@@ -1,4 +1,4 @@
-/*global InputBox, Keyboard, audioInput, file, ABCJS*/
+/*global InputBox, Keyboard, file, ABCJS*/
 (function () {
 "use strict";
 
@@ -27,7 +27,9 @@ function getRenderOptions () {
 	};
 }
 
+//TODO
 function getExportFileName () {
+	//editor.tunes[0].metaText.title
 	var name = document.getElementById('midi-download').getElementsByTagName('a')[0].download || 'untitled.midi';
 	return name.replace(/\.midi$/, '');
 }
@@ -60,27 +62,9 @@ function onExportSvg () {
 	});
 }
 
+//TODO
 function onExportMidi () {
 	file.save.midi(document.getElementById('midi-download').getElementsByTagName('a')[0].href, getExportFileName());
-}
-
-function onAudioInputStart () {
-	showHideAudio(false);
-	audioInput.start(function (note) {
-		inputBox.insert(note);
-	}, function () {
-		showHideAudio(true);
-	});
-}
-
-function onAudioInputEnd () {
-	audioInput.end();
-	showHideAudio(true);
-}
-
-function showHideAudio (showStart) {
-	document.getElementById('button-audio-start').style.display = showStart ? '' : 'none';
-	document.getElementById('button-audio-end').style.display = showStart ? 'none' : '';
 }
 
 function initEvents (inputBox) {
@@ -108,9 +92,7 @@ function initEvents (inputBox) {
 	document.getElementById('button-export-abc').onclick = onExportAbc;
 	document.getElementById('button-export-png').onclick = onExportPng;
 	document.getElementById('button-export-svg').onclick = onExportSvg;
-	document.getElementById('button-export-midi').onclick = onExportMidi;
-	document.getElementById('button-audio-start').onclick = onAudioInputStart;
-	document.getElementById('button-audio-end').onclick = onAudioInputEnd;
+	document.getElementById('button-export-midi').onclick = onExportMidi; //TODO
 
 	window.addEventListener('resize', function () {
 		if (resizing) {
@@ -132,7 +114,9 @@ function initEditor (inputBox) {
 	}
 	editor = new ABCJS.Editor(inputBox, {
 		canvas_id: 'canvas',
-		render_options: getRenderOptions(),
+		abcjsParams: getRenderOptions(),
+
+		//TODO
 		midi_options: {
 			generateInline: true,
 			generateDownload: true
@@ -140,6 +124,19 @@ function initEditor (inputBox) {
 		generate_midi: true,
 		midi_id: 'midi-container',
 		midi_download_id: 'midi-download',
+		/*
+		synth: {
+			el: '#audio',
+			options: {
+				displayLoop: true,
+				displayRestart: true,
+				displayPlay: true,
+				displayProgress: true,
+				displayWarp: true
+			}
+		},
+		*/
+
 		generate_warnings: true,
 		warnings_id: 'warnings'
 	});
@@ -147,10 +144,16 @@ function initEditor (inputBox) {
 
 function init () {
 	/*jshint nonew: false*/
-	ABCJS.midi.soundfontUrl = 'res/lib/';
+
+	//TODO
+	ABCJS.midi.setSoundFont('res/lib/');
+	/*if (window.AudioContext && window.Promise && !window.AudioContext.prototype.resume) {
+		window.AudioContext.prototype.resume = function () {
+			return window.Promise.resolve();
+		};
+	}*/
 
 	updateL10N();
-	showHideAudio(true);
 
 	inputBox = new InputBox('input-box');
 	inputBox.enableAutosave('music-editor-autosave', emptyAbc);
