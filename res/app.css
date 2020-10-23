@@ -14,6 +14,10 @@ svg * {
 	pointer-events: auto;
 }
 
+#canvas {
+	overflow-x: auto !important;
+}
+
 code {
 	font-family: monospace, sans-serif;
 	color: black;
