@@ -1,4 +1,5 @@
 /*global Keyboard: true*/
+/*global getKey, addKeyDownListener*/
 Keyboard =
 (function () {
 "use strict";
@@ -9,7 +10,7 @@ function Keyboard (id, input) {
 	this.hiddenInput = this.element.getElementsByTagName('input')[0];
 	this.useNativeKeyboard = false;
 	this.element.addEventListener('click', this.onClick.bind(this));
-	this.hiddenInput.addEventListener('keypress', this.onKey.bind(this));
+	addKeyDownListener(this.hiddenInput, this.onKey.bind(this));
 	this.hiddenInput.addEventListener('blur', this.onBlur.bind(this));
 }
 
@@ -24,52 +25,46 @@ Keyboard.prototype.onClick = function (e) {
 	}
 };
 
-/*
-In an ideal world, we'd use keydown and e.key. But, alas, this isn't an ideal world.
-Firefox OS 2.0 does have e.key, but it will always be "Unidentified". Additionally,
-printable keys will fire keydown events without any information about the key.
-So we have to use keypress for those, even though this doesn't work in modern browsers
-for non-printable keys.
-*/
 Keyboard.prototype.onKey = function (e) {
-	if (e.charCode) {
-		this.insertStr(String.fromCharCode(e.charCode));
-	} else if (e.keyCode) {
-		switch (e.keyCode) {
-		case 8:
+	var key = getKey(e);
+	if (key.length === 1) {
+		this.insertStr(key);
+	} else {
+		switch (key) {
+		case 'Backspace':
 			this.execCommand('del');
 			break;
-		case 13:
+		case 'Enter':
 			this.insertStr('\n');
 			break;
-		case 33:
+		case 'PageUp':
 			this.execCommand('page-up', e.shiftKey);
 			break;
-		case 34:
+		case 'PageDown':
 			this.execCommand('page-down', e.shiftKey);
 			break;
-		case 35:
+		case 'End':
 			this.execCommand('end', e.shiftKey);
 			break;
-		case 36:
+		case 'Home':
 			this.execCommand('start', e.shiftKey);
 			break;
-		case 37:
+		case 'ArrowLeft':
 			this.execCommand('left', e.shiftKey);
 			break;
-		case 38:
+		case 'ArrowUp':
 			this.execCommand('up', e.shiftKey);
 			break;
-		case 39:
+		case 'ArrowRight':
 			this.execCommand('right', e.shiftKey);
 			break;
-		case 40:
+		case 'ArrowDown':
 			this.execCommand('down', e.shiftKey);
 			break;
-		case 46:
+		case 'Delete':
 			this.execCommand('del-right');
 			break;
-		//default: console.log(e.keyCode);
+		//default: console.log(key);
 		}
 	}
 	e.preventDefault();
